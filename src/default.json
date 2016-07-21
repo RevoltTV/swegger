@@ -1,0 +1,88 @@
+{
+    "swagger": "2.0",
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {},
+    "definitions": {
+        "Error": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "boolean"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "BadRequestError": {
+            "allOf": [{
+                "$ref": "#/definitions/Error"
+            }, {
+                "type": "object",
+                "properties": {
+                    "fields": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }]
+        }
+    },
+    "responses": {
+        "BadRequest": {
+            "description": "Bad Request",
+            "schema": {
+                "$ref": "#/definitions/BadRequestError"
+            }
+        },
+        "Conflict": {
+            "description": "Conflict",
+            "schema": {
+                "$ref": "#/definitions/Error"
+            }
+        },
+        "NotFound": {
+            "description": "Not Found",
+            "schema": {
+                "$ref": "#/definitions/Error"
+            }
+        },
+        "ServerError": {
+            "description": "Internal Server Error",
+            "schema": {
+                "$ref": "#/definitions/Error"
+            },
+            "example": {
+                "error": true,
+                "message": "Internal Server Error"
+            }
+        },
+        "Unauthenticated": {
+            "description": "Unauthenticated",
+            "schema": {
+                "$ref": "#/definitions/Error"
+            },
+            "example": {
+                "error": true,
+                "message": "Not authenticated"
+            }
+        },
+        "Unauthorized": {
+            "description": "Unauthorized",
+            "schema": {
+                "$ref": "#/definitions/Error"
+            },
+            "example": {
+                "error": true,
+                "message": "Not authorized"
+            }
+        }
+    }
+}
