@@ -9,9 +9,10 @@ function parseCommon(schema) {
     }
 
     param.description = schema._description || '';
+    param.required = _.get(schema, '_flags.presence') === 'required';
 
-    if (_.get(schema, '_flags.presence') === 'required') {
-        param.required = true;
+    if (schema._flags.default) {
+        param.default = schema._flags.default;
     }
 
     _.each(schema._tests, (test) => {
@@ -21,6 +22,9 @@ function parseCommon(schema) {
             break;
         case 'guid':
             param.format = 'uuid';
+            break;
+        case 'integer':
+            param.type = 'integer';
             break;
         case 'min':
             param.minimum = test.arg;
