@@ -1,6 +1,6 @@
 {
   "name": "@revolttv/swegger",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Weird library that magics up a Swagger spec from various modules",
   "main": "lib/index.js",
   "jsnext:main": "src/index",
