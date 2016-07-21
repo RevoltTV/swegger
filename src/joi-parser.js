@@ -32,6 +32,9 @@ function parseCommon(schema) {
         case 'max':
             param.maximum = test.arg;
             break;
+        case 'uri':
+            param.format = 'url';
+            break;
         }
     });
 
