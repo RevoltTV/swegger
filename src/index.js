@@ -79,11 +79,20 @@ export default class Swegger {
     }
 
     parseMiddleware(spec, middleware) {
+        spec.responses = spec.responses || {
+            '500': { $ref: '#/responses/ServerError' }
+        };
+
         switch (middleware.name) {
+            case 'authenticated':
+                spec.responses['401'] = { $ref: '#/responses/Unauthenticated' };
+                break;
             case 'authorized':
+                spec.responses['403'] = { $ref: '#/responses/Unauthorized' };
                 spec.security = [{ auth: middleware.handle.roles }];
                 break;
             case 'joi': {
+                spec.responses['400'] = { $ref: '#/responses/BadRequest' };
                 let parameters = [];
                 parameters = parameters.concat(_.map(middleware.handle.schema.query, joiParser.parseQuery));
                 parameters = parameters.concat(_.map(middleware.handle.schema.params, joiParser.parseParam));
@@ -101,6 +110,8 @@ export default class Swegger {
                 break;
             }
         }
+
+        console.log(spec.responses);
     }
 
     parseMiddlewares(pathDef, middlewares) {
