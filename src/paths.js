@@ -20,16 +20,20 @@ function parseMethods(route) {
 function parseMiddleware(spec, middleware) {
     switch (middleware.name) {
         case 'authorized':
-            spec.responses['401'] = { $ref: '#/responses/Unauthenticated' };
-            spec.responses['403'] = { $ref: '#/responses/Unauthorized' };
+            _.merge(spec, {
+                responses: {
+                    '401': { $ref: '#/responses/Unauthenticated' },
+                    '403': { $ref: '#/responses/Unauthorized' }
+                },
+                security: [{ auth: middleware.handle.roles }]
+            });
 
-            spec.security = [{ auth: middleware.handle.roles }];
             break;
         case 'authenticated':
-            spec.responses['401'] = { $ref: '#/responses/Unauthenticated' };
+            _.merge(spec, { responses: { '401': { $ref: '#/responses/Unauthenticated' } } });
+
             break;
         case 'joiRequest': {
-            spec.responses['400'] = { $ref: '#/responses/BadRequest' };
             let parameters = [].concat(
                 _.map(middleware.handle.schema.query, (schema, name) => {
                     return joiToSwagger.getParameterObject(schema, name, 'query');
@@ -44,15 +48,23 @@ function parseMiddleware(spec, middleware) {
                 parameters.push(joiToSwagger.getBodyParameter(middleware.handle.schema.body));
             }
 
-            spec.parameters = parameters;
+            _.merge(spec, {
+                parameters: parameters,
+                responses: {
+                    '400': { $ref: '#/responses/BadRequest' }
+                }
+            });
 
             break;
         }
         case 'joiResponse': {
-            spec.responses['200'] = getResponse(middleware.handle);
+            _.merge(spec, { responses: { '200': getResponse(middleware.handle) }});
 
             break;
         }
+        case 'swegger':
+            _.merge(spec, middleware.handle.meta);
+            break;
         default:
             break;
     }

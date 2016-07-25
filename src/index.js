@@ -5,6 +5,8 @@ import defaultDocument from './default.json';
 import definitions from './definitions';
 import paths from './paths';
 
+export middleware from './middleware';
+
 export default class Swegger {
     constructor(baseDocument) {
         this.document = _.merge({}, defaultDocument, baseDocument);
