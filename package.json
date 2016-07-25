@@ -44,7 +44,13 @@
     "sinon-chai": "^2.8.0"
   },
   "dependencies": {
+    "@revolttv/joi-to-swagger": "^0.1.0",
+    "@revolttv/sequelize-to-joi": "^0.1.1",
     "lodash": "^4.13.1"
+  },
+  "peerDependencies": {
+    "express": "^4.13.4",
+    "sequelize": "^3.23.6"
   },
   "babel": {
     "presets": [
