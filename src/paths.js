@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import { Route } from 'express';
-import Sequelize from 'sequelize';
 
 import joiToSwagger from '@revolttv/joi-to-swagger';
 
