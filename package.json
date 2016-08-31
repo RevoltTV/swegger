@@ -36,15 +36,19 @@
     "chai": "^3.5.0",
     "cross-env": "^2.0.0",
     "eslint": "^3.0.1",
-    "eslint-config-revolt": "^0.1.6",
-    "eslint-plugin-react": "^5.2.2",
-    "mocha": "^2.5.3",
+    "eslint-config-revolt": "^0.2.1",
+    "eslint-plugin-react": "^6.2.0",
+    "express": "^4.14.0",
+    "joi": "^9.0.4",
+    "mocha": "^3.0.2",
     "sequelize": "^3.23.4",
     "sinon": "^1.17.4",
-    "sinon-chai": "^2.8.0"
+    "sinon-chai": "^2.8.0",
+    "sqlite3": "^3.1.4",
+    "swagger-parser": "^3.4.1"
   },
   "dependencies": {
-    "@revolttv/joi-to-swagger": "^0.1.0",
+    "@revolttv/joi-to-swagger": "^0.1.1",
     "@revolttv/sequelize-to-joi": "^0.1.1",
     "lodash": "^4.13.1"
   },

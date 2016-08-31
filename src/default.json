@@ -58,30 +58,18 @@
             "description": "Internal Server Error",
             "schema": {
                 "$ref": "#/definitions/Error"
-            },
-            "example": {
-                "error": true,
-                "message": "Internal Server Error"
             }
         },
         "Unauthenticated": {
             "description": "Unauthenticated",
             "schema": {
                 "$ref": "#/definitions/Error"
-            },
-            "example": {
-                "error": true,
-                "message": "Not authenticated"
             }
         },
         "Unauthorized": {
             "description": "Unauthorized",
             "schema": {
                 "$ref": "#/definitions/Error"
-            },
-            "example": {
-                "error": true,
-                "message": "Not authorized"
             }
         }
     }
