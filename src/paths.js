@@ -58,7 +58,7 @@ function parseMiddleware(spec, middleware) {
             break;
         }
         case 'joiResponse': {
-            _.merge(spec, { responses: { '200': getResponse(middleware.handle) }});
+            _.merge(spec, { responses: { [`${middleware.handle.status || 200}`]: getResponse(middleware.handle) }});
 
             break;
         }
