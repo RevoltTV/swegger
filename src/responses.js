@@ -31,8 +31,13 @@ function process(schema, original) {
 
 // Middleware is a joiResponse object
 export default function getResponse(middleware) {
-    return {
-        description: middleware.description || '',
-        schema: process(middleware.schema, middleware.original)
+    let response = {
+        description: middleware.description || ''
     };
+
+    if (middleware.schema) {
+        response.schema = process(middleware.schema, middleware.original);
+    }
+
+    return response;
 }
