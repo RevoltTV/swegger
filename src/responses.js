@@ -17,6 +17,10 @@ function process(schema, original) {
         };
     }
 
+    if (original.isJoi) {
+        return joiToSwagger.parse(original);
+    }
+
     return {
         type: 'object',
         properties: _.mapValues(original, (value, key) => {
