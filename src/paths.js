@@ -85,7 +85,6 @@ function parseMiddlewares(spec, middlewares) {
         });
     });
 
-
     _.each(_.omit(methods, 'all'), (group, method) => {
         spec[method].responses = spec[method].responses || {};
         spec[method].responses['500'] = { $ref: '#/responses/ServerError' };
