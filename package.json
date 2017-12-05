@@ -49,7 +49,7 @@
   },
   "dependencies": {
     "@revolttv/joi-to-swagger": "^1.1.0",
-    "@revolttv/sequelize-to-joi": "^2.0.2",
+    "@revolttv/sequelize-to-joi": "^1.1.0 || ^2.0.2",
     "lodash": "^4.17.4"
   },
   "peerDependencies": {
